@@ -1,0 +1,16 @@
+# Render Blueprint for the AI Resume Analyzer (Gradio + OpenAI)
+# Deploy: Render dashboard -> New -> Blueprint -> connect this repo.
+# You will be prompted to paste your OPENAI_API_KEY (it is never committed).
+services:
+  - type: web
+    name: resume-analyzer
+    runtime: python
+    plan: free
+    rootDir: resume_analyzer
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false        # set this secret in the Render dashboard
+      - key: PYTHON_VERSION
+        value: "3.12.7"
